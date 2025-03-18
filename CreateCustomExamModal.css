@@ -1,0 +1,128 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3); /* 适度透明，避免过重 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeInOverlay 0.3s ease-in-out;
+}
+
+/* ========== Modal 内容框 (简约白色 + 柔和阴影) ========== */
+.modal-content {
+  background: #ffffff; /* 纯白背景 */
+  width: 460px;
+  padding: 28px;
+  border-radius: 16px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.15); /* 轻质感阴影 */
+  animation: fadeInScale 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+}
+
+/* ========== 头部标题 ========== */
+.modal-content h2 {
+  margin-top: 0;
+  font-size: 22px;
+  text-align: center;
+  color: #333;
+  font-weight: 600;
+}
+  /* ========== 表单元素 ========== */
+  .modal-content label {
+    display: block;
+    margin-top: 14px;
+    font-weight: 600;
+    color: #555;
+    font-size: 14px;
+  }
+  .modal-content input,
+  .modal-content select,
+  .modal-content textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.2s;
+ 
+    background: #464747;
+  }
+  
+  .modal-content input:focus,
+  .modal-content select:focus,
+  .modal-content textarea:focus {
+    border-color: #007bff;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3);
+  }
+  
+  /* ========== 按钮样式 ========== */
+  .modal-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 22px;
+  }
+  
+  .modal-content button {
+    flex: 1;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s ease-in-out;
+  }
+  
+  /* 主按钮 - 渐变蓝色 */
+  .modal-content button:first-child {
+    background: linear-gradient(135deg, #4a90e2, #007bff);
+    color: white;
+    box-shadow: 0 4px 8px rgba(79, 144, 226, 0.4);
+  }
+  
+  .modal-content button:first-child:hover {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(79, 144, 226, 0.5);
+  }
+  
+  /* 取消按钮 - 柔和灰色 */
+  .modal-content button:last-child {
+    background: #e9ecef;
+    color: #333;
+    margin-left: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .modal-content button:last-child:hover {
+    background: #d6d9dc;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  /* ========== 动画优化 ========== */
+  @keyframes fadeInOverlay {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes fadeInScale {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }

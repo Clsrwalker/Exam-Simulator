@@ -1,0 +1,97 @@
+/* =========================================
+   MultiPageBox.css
+   - 包含 Light Mode + Dark Mode 覆盖
+   - 防止按钮文字溢出（使用 clamp、flex 等）
+========================================= */
+
+/* 外层容器：.multiPageBox */
+.multiPageBox {
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 1rem;
+  overflow: auto;
+  background: rgba(255, 255, 255, 0.9);  /* 浅色半透明背景 */
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 0.8rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Tabs 按钮容器 */
+.multiPageBox-tabs {
+  display: flex;
+  gap: 0.5rem;           /* 按钮之间的间距 */
+  margin-bottom: 0.8rem;
+}
+
+/* 选项卡按钮（默认状态） */
+.multiPageBox-tabs button {
+  /* 移除固定 width: 20%，改用 flex:1 自适应 */
+  flex: 1;
+  
+  /* 字体跟随视口大小，但在 12~20px 间变化 */
+  font-size: clamp(1px, 1vw, 15px); 
+  font-weight: bold;
+  
+  /* 以下是按钮本身的样式 */
+  background: #f0f0f0;
+  border: none;
+  padding: 0.6rem 1rem;
+  color: #333;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s;
+
+  /* 如需单行 + 省略号，避免溢出 */
+  white-space: nowrap;       /* 单行显示 */
+  overflow: hidden;          /* 超出隐藏 */
+  text-overflow: ellipsis;   /* 溢出用"..." */
+}
+
+/* 按钮悬停效果 */
+.multiPageBox-tabs button:hover {
+  background: #e0e0e0;
+}
+
+/* 按钮“选中”状态 */
+.multiPageBox-tabs button.active {
+  background: #0084ff;
+  color: white;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(0, 132, 255, 0.3);
+}
+
+/* =========================================
+   Light Mode (默认)
+========================================= */
+body.myDash-light .multiPageBox {
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid #ccc;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* =========================================
+   Dark Mode
+========================================= */
+body.myDash-dark .multiPageBox {
+  background: rgba(30, 30, 30, 0.9); /* 深色背景 */
+  border: 1px solid #444;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Dark Mode Tabs - 默认状态 */
+body.myDash-dark .multiPageBox-tabs button {
+  background: #333;
+  color: #ddd;
+}
+
+body.myDash-dark .multiPageBox-tabs button:hover {
+  background: #444;
+}
+
+/* Dark Mode - 选中状态 */
+body.myDash-dark .multiPageBox-tabs button.active {
+  background: #0084ff;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 132, 255, 0.3);
+}

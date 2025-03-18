@@ -1,0 +1,96 @@
+/* ThemeToggleButton.css */
+
+/* 你已有的一堆 :root 变量可以留在 global.css 或这里都行，省略... */
+
+/* 核心：给 .c-theme 绑定圆形滑块 + 图标动画 */
+.c-theme {
+    --spacing-unit: 0.8rem;
+    --transition-time: 200ms;
+  
+    margin: calc(var(--spacing-unit)*2);
+    border: 0;
+    background: transparent;
+    cursor: pointer;
+    width: calc(var(--spacing-unit)*6); /* 0.8rem * 6 = 4.8rem */
+    position: relative;
+    padding: 0;
+    transition: all var(--transition-time);
+  }
+  
+  /* 灰色轨道 */
+  .c-theme__track {
+    background: var(--gray100, #eee);
+    height: calc(var(--spacing-unit)*2);
+    width: 100%;
+    border-radius: 999px;
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    transition: all var(--transition-time);
+  }
+  
+  /* 滑块本体 */
+  .c-theme__knob {
+    --size: calc(var(--spacing-unit)*3);
+    background: var(--white, #fff);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: var(--size);
+    height: var(--size);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    box-shadow: 0 0 0 1px rgba(0,0,0,.07), 
+                0 calc(var(--spacing-unit)/4) calc(var(--spacing-unit)/2) 0 rgba(0,0,0,.2);
+    transition: transform var(--transition-time), background var(--transition-time);
+  }
+  
+  /* 图标 svg */
+  .c-theme__icon {
+    --size: calc(var(--spacing-unit)*2);
+    fill: currentColor;
+    width: var(--size);
+    height: var(--size);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+  
+  /* 包一下太阳图标 / 月亮图标，以便做缩放动画 */
+  .c-theme__icon-wrapper {
+    position: relative;
+    transition: transform var(--transition-time);
+  }
+  .c-theme__icon-wrapper--light {
+    color: var(--yellow200, #fad776);
+    transform: scale(1) rotate(0deg);
+  }
+  .c-theme__icon-wrapper--dark {
+    color: var(--blue300, #3d73dd);
+    transform: scale(0) rotate(90deg);
+  }
+  
+  /* 当 .c-theme--active => 表示Dark模式 */
+  .c-theme--active .c-theme__track {
+    background: var(--blue100, #ccdefe);
+  }
+  .c-theme--active .c-theme__knob {
+    transform: translate(100%, -50%); /* 滑到轨道右边 */
+    box-shadow: 0 0 0 1px var(--blue200, #99bffd);
+  }
+  /* 太阳、月亮图标动画切换 */
+  .c-theme--active .c-theme__icon-wrapper--light {
+    color: var(--yellow200, #ffe163);
+    transform: scale(0) rotate(90deg);
+  }
+  .c-theme--active .c-theme__icon-wrapper--dark {
+    color: var(--blue300, #3d73dd);
+    transform: scale(1) rotate(0deg);
+  }
+  

@@ -1,0 +1,119 @@
+/* src/components/Calendar.css */
+
+/* 让 .react-calendar 看起来有背景、边框... */
+.react-calendar {
+    font-family: 'Roboto', sans-serif;
+    background: #7297ba;
+    border: 1px solid #222;
+    border-radius: 6px;
+    padding: 1rem;
+    color: #fff;
+    width: 320px;
+    max-width: 100%;
+    box-sizing: border-box;
+    margin-top: 25px;
+  }
+  
+  /* 上方导航(Prev/Next) */
+  .react-calendar__navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+  }
+  .react-calendar__navigation button {
+    background: transparent;
+    border: none;
+    color: #fcee6d;
+    cursor: pointer;
+    padding: 0.3rem 0.6rem;
+    border-radius: 4px;
+  }
+  
+  /* 星期头 (Mo, Tu...) */
+  .react-calendar__month-view__weekdays {
+    display: flex;
+    margin-bottom: 0.5rem;
+    border-bottom: 1px solid #444;
+  }
+  .react-calendar__month-view__weekdays__weekday {
+    flex: 1;
+    text-align: center;
+    color: #373535;
+    font-weight: bold;
+    padding-bottom: 0.3rem;
+  }
+  
+  /* 日期格子 .react-calendar__tile */
+  .react-calendar__tile {
+    position: relative;
+    background: none;
+    border: none;
+    color: #fff;
+    text-align: center;
+    padding: 0.5rem 0;
+    cursor: pointer;
+    transition: background 0.2s;
+    border-radius: 4px;
+  }
+  .react-calendar__tile:hover {
+    background: #446182;
+  }
+  
+  /* 今天 */
+  .react-calendar__tile--now {
+    background: #334;
+  }
+  
+  /* 点击选中的日期 => pink背景 */
+  .react-calendar__tile--active {
+    background: #ea4c89;
+    color: #fff;
+  }
+  
+  /* 上月/下月（邻居） */
+  .react-calendar__tile--neighboringMonth {
+    opacity: 0.4;
+  }
+  
+  /* examDate 高亮(你想要的效果) */
+  .examDay {
+    outline: 2px dashed #fcee6d;
+    border-radius: 4px;
+  }
+  
+  /* 弹窗Overlay */
+  .popupOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0,0,0,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+  }
+  
+  /* 弹窗Box */
+  .popupBox {
+    background: #fff;
+    color: #333;
+    padding: 1rem;
+    width: 300px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+  }
+  
+  .popupBox h4 {
+    margin-top: 0;
+  }
+  
+  /* 外层容器居中 */
+  .calendarContainer {
+    text-align: center;
+  }
+  .react-calendar {
+    display: inline-block;
+  }
+  

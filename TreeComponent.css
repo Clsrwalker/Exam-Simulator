@@ -1,0 +1,153 @@
+/* TreeComponent.css */
+
+/* 将所有样式都局限在 .tree 下 */
+
+/* 只在 .tree 内部把 margin/padding 归零，避免全局覆盖 */
+.tree * {
+    margin: 0;
+    padding: 0;
+  }
+  
+  .tree ul,
+  .tree li {
+    list-style: none;
+  }
+  
+  /* .tree 容器本身可以做一些外层样式 */
+  .tree {
+    /* 例如给树整体一个稍微的内边距或背景:
+    padding: 1rem;
+    background: #f8f8ff;
+     */
+  }
+  
+  /* 最外层 ul */
+  .tree .treeul {
+    overflow: hidden;
+    padding-top: 20px;
+    position: relative;
+  }
+  
+  /* 节点方框 .dv */
+  .tree .dv {
+    width: 90px;
+    height: 145px;
+    /* 改为淡紫色边框并加粗一点 */
+    border: 2px solid #8d8df0;
+    border-radius: 8px;            /* 圆角 */
+    
+    display: inline-block;
+    position: relative; 
+    font-size: 16px;
+    background: #fcfcff;          /* 若想要一点浅色底，可以换成别的浅色 */
+    
+    /* 轻微阴影，让盒子更有层次 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  
+    /* 悬停效果：稍微改变背景、阴影 */
+    transition: background-color 0.3s, box-shadow 0.3s;
+  }
+  .tree .dv:hover {
+    background-color: #f0f0ff;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* 让文字在 .dv 内部绝对定位居中（不影响外部布局） */
+  .tree .dv .dv-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    
+    /* 允许多行折行 */
+    white-space: normal; 
+    word-wrap: break-word; 
+  
+    /* 隐藏超出部分 */
+    overflow: hidden;
+  
+    width: 100%;
+    max-height: 100%;
+  
+    text-align: center;
+    color: #333;
+  }
+  
+  /* li 基础样式 */
+  .tree li {
+    float: left;
+    text-align: center;
+    position: relative;
+    padding: 20px 5px 0 5px;
+    font-size: 0; /* 去掉 inline-block 缝隙 */
+  }
+  
+  /* 如果只有一个子节点，不需要额外的横线 */
+  .tree li:only-child {
+    padding: 0;
+  }
+  
+  /* 有子节点时，UL 前面的小竖线 */
+  .tree ul ul::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 0;
+    width: 0;
+    height: 20px;
+    /* 改用较柔和的颜色，加粗一点 */
+    border-left: 1.5px solid #aaa;
+  }
+  
+  /* 节点分叉左右横线（左半） */
+  .tree li::before {
+    content: "";
+    position: absolute;
+    right: 50%;
+    top: 0;
+    width: 50%;
+    height: 20px;
+    border-top: 1.5px solid #aaa; /* 调整线条粗细和颜色 */
+  }
+  
+  /* 节点分叉左右横线（右半） */
+  .tree li::after {
+    content: "";
+    position: absolute;
+    right: 50%;
+    top: 0;
+    width: 50%;
+    height: 20px;
+    border-top: 1.5px solid #aaa;
+    
+  }
+  
+  /* 针对右半边重写：加上竖线，配色一致 */
+  .tree li::after {
+    
+    left: 50%;
+    top: 0;
+    right: 0;
+    border-left: 1.5px solid #aaa;
+  }
+  
+  /* 首子节点的右半边加个圆角 */
+  .tree li:first-child::after {
+    border-radius: 5px 0 0 0;
+  }
+  
+  /* 移除首/尾节点多余的连线 */
+  .tree .treeul li:first-child::before,
+  .tree .treeul li:last-child::after {
+    border: none;
+  }
+  
+  .tree .treeul li:last-child::before {
+    border-right: 1.5px solid #aaa;
+    border-radius: 0px 5px 0 0;
+  }
+  
+  /* 如果只有一个节点，去掉所有连线 */
+  .tree .treeul li:only-child::before {
+    border: none;
+  }

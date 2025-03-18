@@ -1,0 +1,121 @@
+/* 覆盖层：全屏居中、半透明背景 */
+.records-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+  
+    /* 利用Flexbox，让内容在水平和垂直方向都居中 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  /* 弹窗主体 */
+  .records-modal-content {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 24px 32px;
+    max-width: 800px; 
+    width: 90%;        /* 移动端适配 */
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+    animation: fadeInUp 0.3s ease forwards;
+    position: relative;
+  }
+  
+  /* 标题行、按钮等外观 */
+  .records-modal-content h2 {
+    margin: 0 0 1rem;
+    font-weight: 600;
+    font-size: 1.3rem;
+  }
+  
+  /* 关闭按钮 */
+  .records-modal-content > div > button {
+    border: none;
+    background: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+  }
+  .records-modal-content > div > button:hover {
+    transform: scale(1.1);
+  }
+  
+  /* 表格 */
+  .records-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+  }
+  
+  /* 表头 */
+  .records-table thead th {
+    background-color: #f5f5f5;
+    text-align: center;
+    padding: 0.75rem;
+    font-weight: 600;
+    border-bottom: 2px solid #ddd;
+  }
+  
+  /* 表格行 */
+  .records-table tbody tr:hover {
+    background-color: #f9f9f9;
+  }
+  
+  /* 表格单元格 */
+  .records-table td {
+    padding: 0.75rem;
+    vertical-align: middle;
+    border-bottom: 1px solid #d3cfcf;
+    text-align: center;
+  }
+  
+  /* 表格按钮 */
+  .records-table button {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    background-color: #337ab7;
+    border: none;
+    color: #141010;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+  }
+  .records-table button:hover {
+    background-color: #286090;
+  }
+  
+  /* 详情页“← Back”、“下载PDF”等按钮 */
+  .records-modal-content button {
+    margin: 0.5rem 0;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    background-color: #e1dcdc;
+    border: none;
+    color: #181313;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .records-modal-content button:hover {
+    background-color: #c6c6c6;
+  }
+  
+  /* 动画：轻微上升 + 渐入 */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(15px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

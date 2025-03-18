@@ -1,0 +1,93 @@
+:root {
+    --primary-color: #185ee0;  /* 亮色模式下的选中颜色 */
+    --secondary-color: #e6eef9;
+    --tab-bg-light: #f0f0f0;   /* 浅色模式下 tab 背景 */
+    --tab-bg-dark: #444;       /* 深色模式下 tab 背景 */
+    --tab-text-light: #333;    /* 浅色模式下文字颜色 */
+    --tab-text-dark: #ccc;     /* 深色模式下默认文字 */
+    --glider-light: #fff;      /* 亮色模式下滑块颜色 */
+    --glider-dark: #666;       /* 深色模式下滑块颜色 */
+  }
+  
+  /* 📌 让 Pill Tabs 居中 */
+  .pill-tabs-container {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  /* 📌 胶囊外壳 */
+  .tabs {
+    position: relative;
+    display: inline-flex;
+    background-color: var(--tab-bg-light);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    padding: 0.3rem;
+    border-radius: 999px;
+    transition: background 0.3s ease-in-out;
+  }
+  
+  /* 📌 隐藏 radio 按钮 */
+  .tabs input[type="radio"] {
+    display: none;
+  }
+  
+  /* 📌 标签按钮 */
+  .tab {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    width: 120px;
+    height: 36px;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 999px;
+    cursor: pointer;
+    color: var(--tab-text-light);
+    transition: color 0.15s ease-in;
+  }
+  
+  /* 📌 选中状态 */
+  .tabs input[type="radio"]:checked + label.tab {
+    color: var(--primary-color);
+  }
+  
+  /* 📌 滑块 */
+  .glider {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120px;
+    height: 36px;
+
+    border-radius: 999px;
+    z-index: 1;
+    transition: 0.25s ease-out;
+  }
+  
+  /* 📌 滑块位置 */
+  #radio-score:checked ~ .glider {
+    transform: translateX(0);
+  }
+  #radio-time:checked ~ .glider {
+    transform: translateX(120px);
+  }
+  
+  /* ========================
+     🌙 Dark Mode 适配
+  ======================== */
+  body.myDash-dark .tabs {
+    background-color: var(--tab-bg-dark);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+  }
+  
+  body.myDash-dark .tab {
+    color: var(--tab-text-dark);
+  }
+  
+  body.myDash-dark .tabs input[type="radio"]:checked + label.tab {
+    color: #fff; /* 选中状态变白 */
+  }
+  
+ 

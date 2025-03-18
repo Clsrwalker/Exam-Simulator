@@ -1,0 +1,451 @@
+:root {
+  /* 全局基准字体大小，默认为 16px */
+  font-size: 16px;
+}
+
+@import url('https://fonts.googleapis.com/css?family=Titan+One&display=swap');
+
+/* =======================================
+   1) THEME STYLES (Light & Dark)
+======================================= */
+
+/* Light theme */
+body.myDash-light {
+  background-color: #e9ecef;
+  color: #000;
+}
+
+body.myDash-light .myDash-header {
+  background: linear-gradient(270deg, #9eb6de, #5b8de3 70%);
+  background-size: 400% 400%;
+  animation: gradientAnimation 8s ease infinite;
+}
+body.myDash-light .myDash-card {
+  background: #ebe7e8;
+  color: #000;
+}
+
+/* Dark theme */
+body.myDash-dark {
+  background: linear-gradient(270deg, #414043, #2d2d2f 70%);
+  background-size: 400% 400%;
+  animation: gradientAnimation 8s ease infinite;
+  color: #fff;
+}
+body.myDash-dark .myDash-header {
+  background-color: #514d4d;
+}
+body.myDash-dark .myDash-card {
+  background-color: #1e1e1e;
+  color: #fff;
+}
+
+/* Global gradient animation */
+@keyframes gradientAnimation {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* =======================================
+   2) RESET / BASE
+======================================= */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif; /* or your preferred base font */
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+/* =======================================
+   3) MAIN CONTAINER
+======================================= */
+.myDash-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+/* =======================================
+   4) HEADER
+======================================= */
+.myDash-header {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+
+  /* Default background (overridden by .myDash-light/.myDash-dark) */
+  background: linear-gradient(270deg, #a6abb0, #83b7e4 70%);
+  background-size: 400% 400%;
+  animation: gradientAnimation 8s ease infinite;
+}
+
+/* Title with bounce animation */
+.one-bounce-title {
+  font-family: 'Titan One', cursive;
+  margin: 0 0 0 1.5625rem; /* 原25px => 25/16=1.5625rem */
+  font-size: 2rem;
+  color: rgb(27, 27, 27);
+}
+
+/* Each character in the title gets a delayed bounce */
+.one-bounce-title span {
+  display: inline-block;
+  position: relative;
+  animation: bounceOnce 0.5s ease-out 1 forwards;
+}
+
+/* Delayed bounce for each character */
+.one-bounce-title span:nth-child(1)  { animation-delay: 0.0s; }
+.one-bounce-title span:nth-child(2)  { animation-delay: 0.1s; }
+.one-bounce-title span:nth-child(3)  { animation-delay: 0.2s; }
+.one-bounce-title span:nth-child(4)  { animation-delay: 0.3s; }
+.one-bounce-title span:nth-child(5)  { animation-delay: 0.4s; }
+.one-bounce-title span:nth-child(6)  { animation-delay: 0.5s; }
+.one-bounce-title span:nth-child(7)  { animation-delay: 0.6s; }
+.one-bounce-title span:nth-child(8)  { animation-delay: 0.7s; }
+.one-bounce-title span:nth-child(9)  { animation-delay: 0.8s; }
+.one-bounce-title span:nth-child(10) { animation-delay: 0.9s; }
+.one-bounce-title span:nth-child(11) { animation-delay: 1.0s; }
+.one-bounce-title span:nth-child(12) { animation-delay: 1.1s; }
+.one-bounce-title span:nth-child(13) { animation-delay: 1.2s; }
+.one-bounce-title span:nth-child(14) { animation-delay: 1.3s; }
+.one-bounce-title span:nth-child(15) { animation-delay: 1.4s; }
+.one-bounce-title span:nth-child(16) { animation-delay: 1.5s; }
+.one-bounce-title span:nth-child(17) { animation-delay: 1.6s; }
+.one-bounce-title span:nth-child(18) { animation-delay: 1.7s; }
+.one-bounce-title span:nth-child(19) { animation-delay: 1.8s; }
+.one-bounce-title span:nth-child(20) { animation-delay: 1.9s; }
+.one-bounce-title span:nth-child(21) { animation-delay: 2.0s; }
+.one-bounce-title span:nth-child(22) { animation-delay: 2.1s; }
+.one-bounce-title span:nth-child(23) { animation-delay: 2.2s; }
+.one-bounce-title span:nth-child(24) { animation-delay: 2.3s; }
+
+@keyframes bounceOnce {
+  0%   { top: 0; }
+  50%  { top: -1.25rem; } /* 原20px => 20/16=1.25rem */
+  100% { top: 0; }
+}
+
+.myDash-headerActions {
+  display: flex;
+  gap: 1rem;
+}
+
+/* =======================================
+   5) BUTTONS
+======================================= */
+.myDash-logoutBtn {
+  display: inline-block;
+
+  border: none;
+  outline: none;
+  background: var(--header-bg);
+  color: #fff;
+  font-family: 'Roboto', sans-serif; /* 记得import字体 */
+  font-size: 1em;
+  font-weight: 300;
+  line-height: 1.2rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 150ms ease-out;
+  width: 6.25rem;         /* 原100px => 100/16=6.25rem */
+  letter-spacing: 0.25rem;  /* 原4px => 4/16=0.25rem */
+  border-radius: 0.125rem;  /* 2px => 2/16=0.125rem */
+}
+
+/* Hover & Focus */
+.myDash-logoutBtn:hover,
+.myDash-logoutBtn:focus {
+  background-color: #4c9eea;
+  box-shadow: 
+    0 0 0 0.1875rem white,     /* 3px => 3/16=0.1875rem */
+    0 0 0 0.375rem #2f73f1;    /* 6px => 6/16=0.375rem */
+}
+
+/* Active */
+.myDash-logoutBtn:active {
+  background-color: #3a74e7;
+  box-shadow: 
+    0 0 0 0.1875rem #357eec,   /* 3px => 0.1875rem */
+    0 0 0 0.375rem #4e43ee;    /* 6px => 0.375rem */
+  transition-duration: 75ms;
+}
+
+/* =======================================
+   6) MAIN CONTENT LAYOUT
+======================================= */
+.myDash-content {
+  width: 100%;
+  margin: 0;
+  padding: 1rem;
+  flex: 1;
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+
+/* =======================================
+   7) SIDEBAR
+======================================= */
+.myDash-sidebar {
+  width: 25%;
+  padding: 1rem;
+  margin-right: 1rem;
+  box-sizing: border-box;
+
+  background: none;
+  color: #222;
+  border: none;
+  box-shadow: none;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Dark mode override if you still want it */
+body.myDash-dark .myDash-sidebar {
+  background: none;
+  color: #ddd;
+  border: none;
+  box-shadow: none;
+}
+
+/* =======================================
+   8) USERCARD & BACKGROUND
+======================================= */
+
+/* userCard-bg => 包含 Three.js 背景 + userCard */
+.userCard-bg {
+  position: relative;
+  width: 100%;
+  height: 25rem; /* 原400px => 400/16=25rem */
+  overflow: hidden;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease;
+  transform-origin: center center; 
+
+  border: 0.125rem solid rgba(255, 255, 255, 0.3); /* 原2px => 0.125rem */
+  border-radius: 0.9375rem; /* 15px => 15/16=0.9375rem */
+}
+.userCard-bg:hover {
+  transform: scale(1.05);
+}
+
+/* Three.js背景容器 => 放在背后 */
+#three-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+}
+#three-bg #container {
+  width: 100%;
+  height: 100%;
+}
+
+/* userCard => 背景半透明 */
+.userCard {
+  width: 80%;
+  max-width: 17.5rem; /* 原280px => 280/16=17.5rem */
+  background: rgba(192, 197, 217, 0.8);
+  color: #333;
+  border-radius: 0.75rem; /* 原12px => 12/16=0.75rem */
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.1); /* 2px => 0.125rem, 8px => 0.5rem */
+  padding: 1rem;
+  box-sizing: border-box;
+  text-align: center;
+  position: relative;
+  transition: transform 0.3s, box-shadow 0.3s;
+  margin-bottom: 0;
+}
+
+.userCard:hover {
+  transform: translateY(-0.125rem) scale(1.02); /* 原2px => 0.125rem */
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2); /* 4px => 0.25rem, 12px => 0.75rem */
+}
+/* Dark mode override for .userCard */
+body.myDash-dark .myDash-sidebar .userCard {
+  background: #2a2a2a;
+  color: #ddd;
+  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.4);
+}
+
+/* Avatar wrapper => circle shape with overflow hidden */
+.userCard .avatar-wrapper {
+  width: 6.25rem;  /* 100px => 6.25rem */
+  height: 6.25rem;
+  margin: 0 auto 1rem;
+  position: relative;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.userCard .user-avatar {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0.125rem solid #fff; /* 2px => 0.125rem */
+  border-radius: 50%;
+}
+
+/* Dark mode => darker border for avatar */
+body.myDash-dark .myDash-sidebar .userCard .user-avatar {
+  border-color: #444;
+}
+
+/* User Name / Email / Levels */
+.userCard .userName {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0.5rem 0 0.25rem;
+}
+.userCard .userEmail {
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 0.75rem;
+}
+body.myDash-dark .myDash-sidebar .userCard .userEmail {
+  color: #aaa;
+}
+.userCard .userLevel {
+  font-size: 0.9rem;
+  margin: 0.2rem 0;
+}
+.userCard .userProgress {
+  font-size: 0.9rem;
+  margin: 0.2rem 0;
+}
+
+/* Progress bar in userCard */
+.userCard .progress-bar {
+  width: 80%;
+  height: 0.5rem; /* 原8px => 0.5rem */
+  background: #eee;
+  border-radius: 0.25rem; /* 原4px => 4/16=0.25rem */
+  margin: 0.5rem auto 1rem;
+  overflow: hidden;
+}
+.userCard .progress-fill {
+  height: 100%;
+  background: #2c9e45;
+  width: 0;
+  transition: width 0.3s;
+}
+
+/* Edit button inside userCard */
+.userCard .myDash-editBtn {
+  background: #a69b9b; /* 深色但不死黑 */
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem; /* 原8px => 8/16=0.5rem */
+  padding: 0.625rem 1.125rem; /* 原10px 18px => 0.625rem 1.125rem */
+  font-size: 0.875rem; /* 原14px => 14/16=0.875rem */
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 0.1875rem 0.375rem rgba(0, 0, 0, 0.2); /* 原3px 6px => 0.1875rem 0.375rem */
+}
+
+/* 悬停时增加亮度 & 轻微上浮 */
+.userCard .myDash-editBtn:hover {
+  background: #222;
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.3); /* 4px 8px => 0.25rem 0.5rem */
+  transform: translateY(-0.125rem); /* 2px => 0.125rem */
+}
+
+/* 点击时模拟按压 */
+.userCard .myDash-editBtn:active {
+  background: #333;
+  transform: scale(0.96);
+  box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.2); /* 2px 4px => 0.125rem 0.25rem */
+}
+
+/* =======================================
+   9) MAIN CONTENT CARDS
+======================================= */
+.myDash-mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-sizing: border-box;
+}
+
+.myDash-card {
+  border: 0.0625rem solid #ddd; /* 原1px => 1/16=0.0625rem */
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+/* "Start Exam" Button */
+.myDash-startBtn {
+  background-color: #000;
+  color: #fff;
+  border: none;
+  border-radius: 0.25rem; /* 原4px => 4/16=0.25rem */
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+.myDash-startBtn:hover {
+  background-color: #333;
+}
+.myDash-card.clickable {
+  cursor: pointer;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.myDash-card.clickable:hover {
+  transform: translateY(-0.125rem) scale(1.02); /* 2px => 0.125rem */
+  box-shadow: 0 0.25rem 0.75rem rgba(0,0,0,0.2); /* 4px => 0.25rem, 12px => 0.75rem */
+}
+
+/* 可以套在 .myDash-card.clickable 或 .ripple-effect 类上 */
+.ripple-effect {
+  position: relative;
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* 伪元素做一个彩色/渐变/涟漪背景 */
+.ripple-effect::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  background: radial-gradient(circle, rgba(242, 239, 240, 0.4), rgba(3, 107, 211, 0.4), transparent 70%);
+  transition: width 0.6s ease, height 0.6s ease, opacity 0.8s ease;
+  z-index: -1;
+  opacity: 0;
+}
+
+.ripple-effect:hover::before {
+  width: 300%;
+  height: 300%;
+  opacity: 1;
+}

@@ -1,0 +1,93 @@
+/* 半透明背景蒙层 */
+.review-modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,0.4); /* 半透明黑色 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999; /* 让弹窗覆盖页面 */
+  }
+  
+  /* 弹窗白底内容 */
+  .review-modal-content {
+    position: relative;
+    width: 70%;
+    max-width: 800px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.3s ease forwards;
+  }
+  
+  /* 动画: 弹窗淡入+往上 */
+  @keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* 右上角关闭icon */
+  .close-icon {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    border: none;
+    background: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #444;
+  }
+  
+  /* 标题和副标题 */
+  .review-title {
+    margin-top: 0;   /* 去掉默认margin */
+    font-size: 1.5rem;
+    text-align: center;
+    color: #2c3e50;
+  }
+  
+  .review-subtitle {
+    font-size: 0.9rem;
+    text-align: center;
+    color: #777;
+    margin-bottom: 2rem;
+  }
+  
+  /* 网格区域: 这里示例 4 列 x 10 行 (40题) */
+  .review-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0px; /* 没有间隙，表格边框用border */
+    border: 1px solid #ccc;
+    margin-bottom: 2rem; /* 留空间给 Close按钮 */
+  }
+  
+  .review-cell {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1rem;
+    color: #444;
+  }
+  
+  /* 底部 close btn */
+  .close-btn {
+    display: block;
+    margin: 0 auto;
+    padding: 0.6rem 2rem;
+    background: #2c9e45;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+  }
+  
+  .close-btn:hover {
+    background: #257c38;
+  }
+  

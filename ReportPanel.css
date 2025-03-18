@@ -1,0 +1,73 @@
+/* ReportPanel.css */
+
+/* =======================
+   1) Container (Light)
+======================= */
+.report-panel-container {
+    /* 如果想让它占满父容器高度，并可滚动 */
+    height: 100%;
+    overflow: auto;
+  
+    /* 默认背景、文字、边框（Light模式） */
+    background: #ebe7e8;
+    color: #333;
+  
+    /* 若想要边框，可加
+       border: 1px solid #ccc;
+    */
+    padding: 1rem;
+    box-sizing: border-box;
+  }
+  
+  /* 标题颜色 / 字体等 */
+  .report-panel-title {
+    margin-top: 0;
+    margin-bottom: 1rem;
+  }
+  
+  /* 错误提示文本 */
+  .report-error {
+    color: red; 
+  }
+  
+  /* =======================
+     2) Each Section (Light)
+  ======================= */
+  .report-panel-section {
+    /* 统一区块样式 */
+    background: #ebe7e8;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  
+  /* 如果想对 summary-section 或 exam-analysis-section 做细分，也可加 */
+  /* .summary-section {}
+     .exam-analysis-section {}
+     .advice-section {}
+  */
+  
+  /* =======================
+     3) Dark Mode Overrides
+     以 body.myDash-dark 为例
+  ======================= */
+  body.myDash-dark .report-panel-container {
+    background: #2a2a2a; /* 或者 #333 */
+    color: #ddd;         /* 深色模式文字 */
+    /* border: 1px solid #444; 如果需要外框 */
+  }
+  
+  /* Dark Mode 下，各 section 的覆盖 */
+  body.myDash-dark .report-panel-section {
+    background: #3a3a3a; /* 更深一点 */
+    border: 1px solid #555;
+    color: #ddd;
+  }
+  
+  /* 针对标题、错误文字、其他细节也可继续覆盖 */
+  body.myDash-dark .report-error {
+    color: #ff6666; 
+  }
+  /* ...再根据需要扩展 */
+  

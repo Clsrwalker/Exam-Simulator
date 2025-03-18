@@ -1,0 +1,87 @@
+/* MistakesPanel.css */
+
+/* ========== 1) 最外层容器 (Light) ========== */
+.mistakes-panel {
+    background: #ebe7e8;
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    color: #333; /* 默认文字颜色 */
+    transition: background-color 0.3s, color 0.3s;
+  }
+  
+  /* 如果想显示“无错题”的文字颜色 */
+  .no-mistakes {
+    color: #777;
+  }
+  
+  /* ========== 2) 错题项 (Light) ========== */
+  .mistake-item {
+    margin-bottom: 1rem;
+    border: 1px solid #eee;
+    padding: 0.5rem;
+    border-radius: 4px;
+    background: #ebe7e8;
+  }
+  
+  /* 翻页区域，如果有需要也可在这里做更多定制 */
+  .mistakes-pagination {
+    text-align: center;
+  }
+  
+  /* ========== 3) 按钮样式 (Light) ========== */
+  /* 给 .mistakes-panel 下的所有 button 一个更现代的外观 */
+  .mistakes-panel button {
+    background: #b5b5b6;
+    color: #fff;
+    border: 1px solid #b5b5b6;
+    border-radius: 4px;
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s;
+    color: #000;
+  }
+  
+  /* Hover & Active 效果 */
+  .mistakes-panel button:hover {
+    background: #393939;
+  }
+  
+  .mistakes-panel button:active {
+    transform: scale(0.95);
+  }
+  
+  /* ========== 4) Dark Mode 覆盖 ========== */
+  /* 假设你的 body 切换时会加 class="myDash-dark" */
+  body.myDash-dark .mistakes-panel {
+    background: #2a2a2a;   /* 深色背景 */
+    border: 1px solid #444;
+    color: #ddd;           /* 深色模式下的文字色 */
+  }
+  
+  body.myDash-dark .mistake-item {
+    background: #3a3a3a;
+    border: 1px solid #555;
+    color: #ddd;
+  }
+  
+  body.myDash-dark .no-mistakes {
+    color: #aaa;
+  }
+  
+  /* Dark Mode 下的按钮 */
+  body.myDash-dark .mistakes-panel button {
+    background: #444;
+    color: #fff;
+    border-color: #666; /* 深色边框 */
+  }
+  
+  body.myDash-dark .mistakes-panel button:hover {
+    background: #666;
+  }
+  
+  body.myDash-dark .mistakes-panel button:active {
+    transform: scale(0.95);
+  }
+  

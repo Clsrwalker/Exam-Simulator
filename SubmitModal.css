@@ -1,0 +1,157 @@
+/************************************
+ * 蒙层背景
+ ************************************/
+ .submitModal-overlay {
+    position: fixed;
+    top: 0; 
+    left: 0;
+    width: 100vw; 
+    height: 100vh;
+    background: rgba(0,0,0,0.5); 
+    z-index: 9999;
+  
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    /* 淡入动画 */
+    opacity: 0;
+    animation: fadeOverlayIn 0.3s ease forwards;
+  }
+  
+  @keyframes fadeOverlayIn {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  /************************************
+   * 弹窗容器
+   ************************************/
+  .submitModal-content {
+    position: relative;
+    width: 90%;
+    max-width: 500px;
+    background: #fff;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.2);
+  
+    /* 入场动画：从下往上 */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUpIn 0.3s ease forwards;
+  }
+  
+  @keyframes slideUpIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /************************************
+   * 右上角关闭按钮 (X)
+   ************************************/
+  .submitModal-closeBtn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+  }
+  
+  .submitModal-closeBtn:hover {
+    color: #333;
+  }
+  
+  /************************************
+   * 标题与副标题
+   ************************************/
+  .submitModal-title {
+    margin: 0;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-align: center;
+    color: #2f4a60;
+  }
+  
+  .submitModal-subtitle {
+    margin: 0 auto 2rem auto;
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #666;
+  }
+  
+  /************************************
+   * 底部按钮区
+   ************************************/
+  .submitModal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1.5rem;
+  }
+  
+  /************************************
+   * 按钮基类
+   ************************************/
+  .submitModal-btn {
+    min-width: 150px;               /* 不让按钮太窄 */
+    height: 44px;
+    border-radius: 9999px;          /* 胶囊形 */
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid transparent;
+    cursor: pointer;
+  
+    /* 初始阴影与动画过渡 */
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: 
+      transform 0.2s ease,
+      box-shadow 0.2s ease,
+      background-color 0.2s ease,
+      color 0.2s ease;
+  }
+  
+  /* 鼠标悬停：上移+微放大+阴影变深 */
+  .submitModal-btn:hover {
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  }
+  
+  /************************************
+   * Cancel 按钮：白底 + 深色边框
+   ************************************/
+  .submitModal-btn--cancel {
+    background: #fff;
+    color: #333;
+    border-color: #333;
+  }
+  
+  .submitModal-btn--cancel:hover {
+    background-color: #f0f0f0;
+    color: #111;
+  }
+  
+  /************************************
+   * Confirm 按钮：绿色渐变
+   ************************************/
+  .submitModal-btn--confirm {
+    /* 用线性渐变来让按钮更有层次感 */
+    background: linear-gradient(90deg, #2c9e45 0%, #32a84e 100%);
+    color: #fff;
+    border-color: #2c9e45; 
+  }
+  
+  .submitModal-btn--confirm:hover {
+    /* 悬停时，渐变稍微换深一点 */
+    background: linear-gradient(90deg, #257c38 0%, #2b8e40 100%);
+  }
+  

@@ -1,0 +1,98 @@
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    line-height: 1;
+  }
+  
+  /* ========== notebook-paper：主体笔记纸风格 ========== */
+  #notebook-paper {
+    width: 600px;
+    height: 700px;
+    /* 移除原先的 position:absolute; 改用组件内联 style 里的 position:fixed */
+    
+    overflow: hidden;
+    border-radius: 5px;
+    z-index: 9999;
+    /* 内边距：给顶部 header 留出空间 + 左侧红线留出距离 */
+    padding-top: 150px;  /* header 高度 */
+    padding-left: 160px; /* 和红线的距离 */
+    padding-right: 20px;
+  
+    /* 阴影 */
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2), 0 0 6px rgba(0, 0, 0, 0.2);
+  
+    /* 背景：横线纸（每隔30px出现一条蓝线） */
+    background: linear-gradient(to bottom, white 29px, #00b0d7 1px);
+    background-size: 100% 30px;
+  }
+  
+  /* 左侧那条红线 */
+  #notebook-paper::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 140px;
+    width: 1px;
+    height: 100%;
+    background: #db4034;
+    z-index: 1;
+  }
+  
+  /* ========== header：笔记纸顶部白色区域 ========== */
+  #notebook-paper > header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 150px;
+    background: white;
+  }
+  
+  /* 大标题文本 */
+  #notebook-paper > header h1 {
+    margin: 0;
+    padding: 127px 20px 0 160px; /* 留出顶部127px + 左边160px */
+    font-size: 60px;
+    line-height: 60px;
+  }
+  
+  /* ========== content：主要内容 ========== */
+  #notebook-paper #content {
+    margin-top: 67px; /* 与 header 底部的距离 */
+  }
+  
+  /* 段落样式，可根据需要修改 */
+  #notebook-paper #content p {
+    font-size: 20px;
+    line-height: 30px;  /* 与背景线对齐 */
+    margin: 0 0 30px;
+    color: #444;
+  }
+  
+  /* ========== 让输入框直接“写”在横线纸上 ========== */
+  .notebook-input,
+  .notebook-textarea {
+    display: block;
+    width: 100%;
+    border: none;            /* 去掉边框 */
+    background: transparent; /* 背景透明 */
+    outline: none;
+    line-height: 30px;       /* 与横线间距一致 */
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 30px;     /* 两个输入之间留空 */
+    padding: 0;
+    resize: none;            /* 禁止 textarea 拖拽调整大小 */
+  }
+  
+  /* placeholder 颜色稍微浅一点 */
+  .notebook-input::placeholder,
+  .notebook-textarea::placeholder {
+    color: #999;
+  }
+  

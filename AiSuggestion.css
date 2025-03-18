@@ -1,0 +1,287 @@
+/* ========================
+   🌐 0) 全局/布局设置
+======================== */
+
+/* 若你想让整个页面都统一用 box-sizing:border-box，可启用： */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 
+  page-wrapper：一个最外层的容器，内含导航、aiSuggestion、侧边栏等 
+  flex-flow: row nowrap => 横向排列，不换行
+*/
+.page-wrapper {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  min-height: 100vh; /* 撑满视窗高度，视需求可改 */
+}
+
+/* 导航栏示例：左侧固定宽度 */
+.main-nav {
+  flex: 0 0 220px;    /* 固定220px宽 */
+  min-width: 220px;
+  border-right: 1px solid #ddd;
+  background: #ebe7e8; /* 视需求可改 */
+  /* 其他导航样式、padding 等 */
+}
+
+/* 深色模式下，对导航栏的边框可调整 */
+body.myDash-dark .main-nav {
+  border-right: 1px solid #666;
+  background: #2a2a2a; /* 与 .aiSuggestion-container 的深色模式一致 */
+}
+
+/* 
+  中间主体 aiSuggestion-container 
+  flex: 1 1 0 => 会分配剩余空间，可收缩可伸展
+  min-width: 300px => 防止过度缩小
+*/
+.aiSuggestion-container {
+  flex: 1 1 0;
+  min-width: 300px;
+  box-sizing: border-box; /* 确保padding/border不会影响最终宽度 */
+  /* 下面是你原本 .aiSuggestion-container 的样式，也合并进来 */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: #ebe7e8; /* 浅色背景 */
+  border: 1px solid #ddd;
+  margin: 1rem 0;
+  transition: all 0.3s ease;
+  min-height: 600px; /* 确保底部有足够空间 */
+  color: #333; /* 默认字体颜色 */
+  padding: 1rem;
+}
+
+/* 深色模式下，aiSuggestion-container 的背景/边框 */
+body.myDash-dark .aiSuggestion-container {
+  background: #2a2a2a;
+  border: 1px solid #444;
+  color: #ddd;
+}
+
+/* 
+  侧边栏（右侧报告等） 
+  同样 flex: 1 => 与中间区域一起分配剩余空间
+*/
+.aiSuggestion-reportSide {
+  
+  border-left: 1px solid #ddd;
+  color: #333;
+  box-sizing: border-box;
+  /* 若还需要内部样式，可自行添加 */
+}
+body.myDash-dark .aiSuggestion-reportSide {
+  border-left: 1px solid #666;
+  color: #ddd;
+}
+
+/* ========================
+   1) 头部、段切换等
+======================== */
+.aiSuggestion-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* 分段切换 (Segmented Control) */
+.segmented-control {
+  display: inline-flex;
+  border-radius: 999px;
+  background: #ebe7e8;
+  padding: 4px;
+}
+
+.segmented-btn {
+  border: none;
+  outline: none;
+  background: transparent;
+  padding: 6px 12px;
+  font-size: 14px;
+  border-radius: 999px;
+  cursor: pointer;
+  color: #333;
+}
+.segmented-btn:hover {
+  background: rgba(0, 0, 0, 0.1);
+}
+.segmented-btn.active {
+  background: #ebe7e8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  color: #007aff;
+}
+
+/* ========================
+   2) 按钮样式 (Light Mode)
+======================== */
+.aiSuggestion-container .genAiBtn {
+  cursor: pointer;
+  font-size: 14px;
+  padding: 10px 16px;
+  background: #f3eeef; /* 浅色背景 */
+  color: #333; /* 深色文字 */
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  font-weight: bold;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.aiSuggestion-container .genAiBtn:hover {
+  background: #e2e6ea;
+  border-color: #bbb;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+.aiSuggestion-container .genAiBtn:active {
+  background: #d6d9dc;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+.aiSuggestion-container .genAiBtn:disabled {
+  background: #f1f3f5;
+  color: #aaa;
+  border-color: #ddd;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+.aiSuggestion-container .genAiBtn:disabled::after {
+  content: "⏳"; /* 加载图标 */
+  margin-left: 8px;
+  font-size: 14px;
+  animation: loadingDots 1.5s infinite;
+}
+
+/* 加载动画 */
+@keyframes loadingDots {
+  0% { opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+/* ========================
+   3) 深色模式 (Dark Mode)
+======================== */
+/* 按钮在 Dark Mode 下的适配 */
+body.myDash-dark .aiSuggestion-container .genAiBtn {
+  background: #555;
+  border: 1px solid #777;
+  color: #eee;
+}
+body.myDash-dark .aiSuggestion-container .genAiBtn:hover {
+  background: #777;
+}
+
+/* ========================
+   4) 统计图表
+======================== */
+.chart-wrapper {
+  position: relative;
+  width: 700px;
+  height: 300px;
+  border: 1px solid #242222;
+  margin-top: 1rem;
+}
+.chart-wrapper canvas {
+  width: 700px;
+  height: 300px;
+}
+/* 悬浮提示 Label */
+.chart-label {
+  position: absolute;
+  display: none;
+  background: rgba(255, 255, 255, 0.8);
+  color: #333;
+  padding: 0.3em;
+  pointer-events: none;
+  font-size: 14px;
+  border-radius: 3px;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* ========================
+   5) 报告侧边栏 
+======================== */
+/* 见上面 .aiSuggestion-reportSide & dark mode */
+
+/* ========================
+   6) Tabs / Essay report 
+======================== */
+/* =============== Tabs 样式 (Light Mode) =============== */
+/* =============== Tabs 样式 (Light Mode) =============== */
+.aiSuggestion-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* 使两个按钮呈现“盒子”风格 */
+.aiSuggestion-tabs button {
+  /* 让它看起来更像一个方块/盒子 */
+  width: 33%;            /* 固定宽度，可按需调整 */
+  height: 10%;           /* 固定高度，可按需调整 */
+  
+  display: flex;           /* 让文字垂直居中 */
+  align-items: center;     
+  justify-content: center;
+  text-align: center;      /* 文本居中 */
+
+  cursor: pointer;
+  font-size: 16px;         /* 字体略大 */
+  font-weight: bold;
+
+  /* 原有的背景、边框、阴影、圆角等基本保持 */
+  background: #f3eeef;     
+  color: #333; 
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+/* 悬停时 */
+.aiSuggestion-tabs button:hover {
+  background: #e2e6ea;
+  border-color: #b6dbf5;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* 按下时 */
+.aiSuggestion-tabs button:active {
+  background: #d6d9dc;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* 选中状态 */
+.aiSuggestion-tabs button.active {
+  background: #ebe7e8;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  color: #007aff;
+}
+
+/* =============== Tabs 样式 (Dark Mode) =============== */
+body.myDash-dark .aiSuggestion-tabs button {
+  background: #555;        
+  color: #eee;             
+  border: 1px solid #777;
+  box-shadow: none;        
+}
+
+body.myDash-dark .aiSuggestion-tabs button:hover {
+  background: #666;
+  border-color: #888;
+}
+
+body.myDash-dark .aiSuggestion-tabs button:active {
+  background: #444;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+body.myDash-dark .aiSuggestion-tabs button.active {
+  background: #444;
+  border-color: #888;
+}

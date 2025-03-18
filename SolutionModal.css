@@ -1,0 +1,170 @@
+/**********************************
+ * 1. 变量 & 基础
+ **********************************/
+ :root {
+    --modal-overlay-bg: rgba(0, 0, 0, 0.5);  /* 蒙层半透明 */
+    --modal-bg: #fff;                       /* 弹窗背景 */
+    --modal-radius: 20px;                   /* 圆角大小 */
+    --modal-width: 600px;                   /* 宽度上限 */
+    --modal-padding: 2rem;                  /* 内边距 */
+    --modal-boxshadow: 0 15px 30px rgba(0,0,0,0.2);
+  
+    --title-color: #2f4a60;  /* 标题主色 */
+    --subtitle-color: #666;  /* 副标题颜色 */
+    --icon-size: 64px;       /* 图标大小 */
+    --icon-bg: #e8f1ec;      /* 图标外圈浅绿色 */
+  
+    --btn-font-size: 1rem;
+    --btn-radius: 9999px;
+  
+    --confirm-bg: #2c9e45;  /* 确定(否)按钮绿色 */
+    --confirm-color: #fff;
+    --cancel-bg: #fff;      /* 取消(是)按钮背景 */
+    --cancel-color: #2f4a60;
+    --cancel-border: #2f4a60; 
+  
+    --anim-duration: 0.3s;
+    --anim-ease: ease;
+  }
+  
+  /**********************************
+   * 2. 蒙层 (Overlay)
+   **********************************/
+  .solution-modal-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: var(--modal-overlay-bg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+  
+  /**********************************
+   * 3. 弹窗容器
+   **********************************/
+  .solution-modal-content {
+    position: relative;
+    width: 90%;
+    max-width: var(--modal-width);
+    background: var(--modal-bg);
+    border-radius: var(--modal-radius);
+    box-shadow: var(--modal-boxshadow);
+    padding: var(--modal-padding);
+    color: var(--title-color);
+    text-align: center;
+  
+    /* 入场动画 */
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp var(--anim-duration) var(--anim-ease) forwards;
+  }
+  
+  
+  /**********************************
+   * 4. Header 区域(含图标 + 标题)
+   **********************************/
+  .solution-modal-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;         /* 图标和标题之间 */
+    margin-bottom: 1rem;
+  }
+  
+  .solution-modal-icon-wrapper {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    border-radius: 50%;
+    background: var(--icon-bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+  
+  .solution-modal-icon {
+    font-size: 1.8rem; /* 里面的 “i” 字体大小 */
+    color: #2c9e45;    /* 深点绿 */
+  }
+  
+  .solution-modal-title {
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: var(--title-color);
+    margin: 0;
+  }
+  
+  /**********************************
+   * 5. 副标题 / 提示文字
+   **********************************/
+  .solution-modal-subtitle {
+    font-size: 0.95rem;
+    color: var(--subtitle-color);
+    line-height: 1.5;
+    margin-bottom: 2rem;
+  }
+  
+  /**********************************
+   * 6. 按钮区
+   **********************************/
+  .solution-modal-actions {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  .solution-modal-btn {
+    width: 80px;                /* 按钮更宽 */
+    height: 80px;               /* 按钮更高 */
+    display: flex;              /* 使用 flex 让文字居中 */
+    align-items: center;        /* 垂直居中 */
+    justify-content: center;    /* 水平居中 */
+    font-size: 1.2rem;          /* 字体更大 */
+    font-weight: 600;           /* 字体更粗 */
+    border-radius: var(--btn-radius); /* 圆角(9999px) =>胶囊或圆形 */
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: background-color 0.2s, border-color 0.2s;
+  }
+  
+  
+  /* “否”按钮 => 绿色实心 */
+  .solution-modal-btn--confirm {
+    background: var(--confirm-bg);
+    color: var(--confirm-color);
+    border-color: var(--confirm-bg);
+    
+  }
+  .solution-modal-btn--confirm:hover {
+    background: #257c38;
+    border-color: #257c38;
+  }
+  
+  /* “是”按钮 => 白底圆框 */
+  .solution-modal-btn--cancel {
+    background: var(--cancel-bg);
+    color: var(--cancel-color);
+    border-color: var(--cancel-border);
+  }
+  .solution-modal-btn--cancel:hover {
+    background: #f9f9f9;
+  }
+  
+  /**********************************
+   * 动画 Keyframe
+   **********************************/
+  @keyframes fadeInUp {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  .solution-modal-header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+  }
+    

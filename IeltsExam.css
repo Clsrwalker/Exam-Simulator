@@ -1,0 +1,410 @@
+/**********************************
+ * 1. 全局 & 基础重置
+ **********************************/
+ * {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+  }
+  
+  body, html {
+    width: 100%;
+    height: 100%;
+
+  }
+  
+  /**********************************
+   * 2. 外层容器 & 错误提示
+   **********************************/
+  .ieltsExam-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background: #fdfdfd;
+  }
+  
+  .error {
+    color: red;
+    margin: 20px;
+  }
+  
+  /**********************************
+   * 3. 顶部导航栏
+   **********************************/
+  .ieltsExam-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    height: 70px;
+    padding: 0 1rem;
+  }
+  
+  /* 导航两侧布局 */
+  .ieltsNav-left,
+  .ieltsNav-right {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  /**********************************
+   * 4. 顶部图标按钮 (全屏 / Menu)
+   **********************************/
+  .icon-btn {
+    border: none;
+    background: none;
+    color: #000;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 0.4rem;
+    transition: background-color 0.2s ease;
+  }
+  
+  .icon-btn:hover {
+    background-color: #f2f2f2;
+    border-radius: 50%;
+  }
+  
+  /**********************************
+   * 5. 主体分栏 (split-layout)
+   **********************************/
+  .split-layout {
+    flex: 1; 
+    display: flex;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* 左侧区域 */
+  .left-pane {
+    background: #fff;
+    overflow-y: auto;
+    padding: 1rem;
+    /* 默认文字大小 (18px) */
+    font-size: 18px;
+    line-height: 1.6;
+  }
+  
+  /* 三档大小 => 在 React 里通过 className 切换 */
+  .left-pane.small {
+    font-size: 14px;
+  }
+  
+  .left-pane.medium {
+    font-size: 16px;
+  }
+  
+  .left-pane.large {
+    font-size: 20px;
+  }
+  
+  /* 分割线 */
+  .splitter-handle {
+    width: 8px;
+    cursor: col-resize;
+    background: #ddd;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .splitter-icon {
+    font-size: 0.7rem;
+    color: #999;
+    pointer-events: none; 
+  }
+  
+  /* 右侧区域 */
+  .right-pane {
+    flex: 1;
+    background: #fdfdfd;
+    overflow-y: auto;
+    padding: 1rem;
+    font-size: 16px; 
+    line-height: 1.6;
+  }
+  
+  /**********************************
+   * 6. 下拉菜单 (Menu 下拉)
+   **********************************/
+  .ielts-dropdown {
+    position: absolute;
+    top: 60px;
+    left: 1rem;
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 999;
+  }
+  
+  /* 下拉里的按钮 */
+  .ielts-dropdown button {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    color: #000;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 0.95rem;
+    padding: 0.4rem 0.8rem;
+    cursor: pointer;
+  }
+  
+  .ielts-dropdown button:hover {
+    background-color: #efefef;
+  }
+  
+  /**********************************
+   * 7. 顶部操作按钮 (Review / Submit)
+   **********************************/
+  .review-btn,
+  .submit-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 1rem;
+    border-radius: 9999px;
+    cursor: pointer;
+    padding: 0.5rem 1rem;
+  }
+  
+  .review-btn {
+    background: #eee;
+    color: #000;
+    border: 1px solid #ccc;
+  }
+  
+  .submit-btn {
+    background: #2c9e45;
+    color: #fff;
+    border: none;
+  }
+  
+  .submit-btn:hover {
+    background: #257c38;
+  }
+  
+  /**********************************
+   * 8. Article / block 样式 (可选)
+   **********************************/
+  /* 如果你在左Pane里包了一层 .block 需要半透明背景、噪点等 */
+  .block {
+    box-sizing: border-box;
+    width: 80%;
+    max-width: 840px;
+    min-width: 360px;
+    margin: auto;            /* 让其居中 */
+    padding: 60px 40px;
+    border-radius: 10px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    background: #ddd url("http://www.graphicartsunit.com/images/noise3.png");
+    font-family: 'Old Standard TT', serif;
+    line-height: 1.7;
+    /* 不再固定 font-size, 继承父级 (.left-pane) */
+    font-size: inherit;
+  }
+  
+  /* 每个章节 */
+  .block__item:not(:first-child) {
+    margin-top: 60px;
+  }
+  
+  /* block标题 */
+  .block__head {
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    margin-bottom: 30px;
+    text-align: center;
+  }
+  
+  .block__head::before,
+  .block__head::after {
+    flex: 1;
+    content: '';
+    display: block;
+    height: 0;
+    border-top: 1px solid #212121;
+    margin: 0 30px;
+  }
+  
+  .block__body {
+    margin-top: 30px;
+    color: #212121;
+  }
+  
+  /**********************************
+   * 9. 考试题目区
+   **********************************/
+  /* 每道题目外围 */
+  .question-block {
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 1rem;
+  }
+  
+  /* 多选题 => 自定义radio (方形+对勾) */
+  input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #aaa;
+    border-radius: 4px;
+    vertical-align: middle;
+    margin-right: 8px;
+    cursor: pointer;
+    outline: none;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  
+  input[type="radio"]:hover {
+    border-color: #666;
+  }
+  
+  input[type="radio"]:checked {
+    border-color: #257c38;
+    background-color: #257c38;
+    animation: checkbox-bounce 0.25s ease;
+  }
+  
+  input[type="radio"]:checked::after {
+    content: "✓";
+    font-size: 16px;
+    color: #fff;
+    position: absolute;
+    left: 2px;
+    top: -2px;
+  }
+  
+  /* 缩放动画 */
+  @keyframes checkbox-bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.3); }
+    100% { transform: scale(1); }
+  }
+  
+  /* 填空题 => input[type="text"] */
+  .question-block input[type="text"] {
+    display: block;
+    width: 100%;
+    max-width: 300px;
+    margin: 0.5rem 0;
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+  
+  .question-block input[type="text"]:focus {
+    border-color: #257c38;
+    box-shadow: 0 0 0 2px rgba(37,124,56,0.2);
+    outline: none;
+  }
+  
+  /* matching题 => select */
+  .question-block select {
+    display: inline-block;
+    width: auto; 
+    min-width: 160px;
+    margin: 0.5rem 0;
+    padding: 0.4rem 0.6rem;
+    font-size: 1rem;
+    line-height: 1.4;
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    appearance: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  
+  .question-block select:focus {
+    border-color: #257c38;
+    box-shadow: 0 0 0 2px rgba(37,124,56,0.2);
+    outline: none;
+  }
+  
+  .question-block p {
+    margin: 0.5rem 0;
+    color: #444;
+    line-height: 1.5;
+  }
+  
+  .question-block pre {
+    background: #fafafa;
+    padding: 0.6rem;
+    border: 1px solid #eee;
+    border-radius: 4px;
+    margin-bottom: 0.5rem;
+    white-space: pre-wrap;
+    font-family: inherit;
+    color: #555;
+  }
+  
+  /**********************************
+   * 10. 分数显示 (exam-score)
+   **********************************/
+  .exam-score {
+    margin-bottom: 1rem;
+    color: #2c9e45;
+    font-weight: bold;
+  
+    /* 可加更炫外观:
+       display: flex;
+       align-items: center;
+       ...
+    */
+  }
+  .textSize-option.small {
+    font-size: 14px;
+  }
+  .textSize-option.medium {
+    font-size: 16px;
+  }
+  .textSize-option.large {
+    font-size: 20px;
+  }
+  .exit-btn {
+    display: inline-flex;            /* 让文字/图标更居中 */
+    align-items: center;
+    justify-content: center;
+  
+    /* 尺寸 & 圆角 */
+    height: 44px;                    /* 高度 */
+    padding: 0 1.5rem;               /* 左右留些内边距 */
+    border-radius: 9999px;           /* 胶囊形 */
+  
+    /* 字体与边框 */
+    font-size: 1rem;
+    font-weight: 600;
+    border: 2px solid #2f4a60;
+    color: #2f4a60;
+    background-color: #fff;
+  
+    /* 交互 */
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+  }
+  
+  .exit-btn:hover {
+    background-color: #f7f7f7;       /* 浅灰底 */
+    color: #2f4a60;                  /* 保持一样 or 变深 */
+  }
+  

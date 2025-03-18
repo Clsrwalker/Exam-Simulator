@@ -1,0 +1,282 @@
+/**********************************
+ * 1. CustomExam 容器优化
+ **********************************/
+ .customExam-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to bottom, #f8f9fa, #e9ecef); /* 柔和背景 */
+  }
+  
+  /**********************************
+   * 2. 顶部导航栏优化
+   **********************************/
+  .customExam-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    height: 70px;
+    padding: 0 1rem;
+  }
+  
+  .customNav-left,
+  .customNav-right {
+    display: flex;
+ 
+    gap: 0.5rem;
+  }
+  
+  /**********************************
+   * 3. 主要布局（左右分屏）
+   **********************************/
+  .split-layout {
+    flex: 1;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+  }
+  
+  /* 左侧文章面板 */
+  .left-pane {
+    background: #fff;
+    overflow-y: auto;
+    padding: 1rem;
+    line-height: 1.6;
+  }
+  
+  /* 字体大小调整 */
+  .left-pane.small { font-size: 14px; }
+  .left-pane.medium { font-size: 16px; }
+  .left-pane.large { font-size: 20px; }
+  
+  /* 拖拽分割条 */
+  .splitter-handle {
+    width: 10px;
+    background: linear-gradient(to right, #ddd, #bbb);
+    cursor: col-resize;
+    transition: background 0.2s ease;
+  }
+  
+  .splitter-handle:hover {
+    background: linear-gradient(to right, #aaa, #888);
+  }
+  
+  /* 右侧题目面板 */
+  .right-pane {
+    flex: 1;
+    background: #fdfdfd;
+    overflow-y: auto;
+    padding: 2rem 5%; /* 增加左右 padding，让内容更集中 */
+    max-width: 80%; /* 限制最大宽度，避免内容太分散 */
+    margin: 0 auto; /* 居中 */
+    line-height: 1.6;
+  }
+  
+  /**********************************
+   * 4. 题目样式优化（卡片化）
+   **********************************/
+  .question-block {
+    background: #fff;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1.5rem;
+    border-left: 5px solid #2c9e45;
+  }
+  
+  /**********************************
+   * 5. 选项（单选 & 输入框）
+   **********************************/
+  input[type="radio"] {
+    appearance: none;
+    position: relative;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #aaa;
+    border-radius: 50%;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+  
+  input[type="radio"]:checked {
+    border-color: #257c38;
+    background-color: #257c38;
+    box-shadow: 0 0 10px rgba(37, 124, 56, 0.4);
+  }
+  
+  .question-block input[type="text"] {
+    width: 100%;
+    max-width: 300px;
+    padding: 0.4rem;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.2s ease;
+  }
+  
+  .question-block input[type="text"]:focus {
+    border-color: #257c38;
+    box-shadow: 0 0 0 2px rgba(37, 124, 56, 0.2);
+  }
+  
+  /**********************************
+   * 6. 提交 & 按钮优化
+   **********************************/
+  .submit-btn {
+    background: #2c9e45;
+    color: #fff;
+    border: none;
+    transition: transform 0.1s ease, background 0.2s ease;
+  }
+  
+  .submit-btn:hover {
+    background: #257c38;
+    transform: scale(1.05);
+  }
+  
+  .submit-btn:active {
+    transform: scale(0.95);
+  }
+  
+  /**********************************
+   * 7. 移动端适配
+   **********************************/
+  @media (max-width: 768px) {
+    .customExam-navbar {
+      flex-direction: column;
+      height: auto;
+      padding: 0.5rem;
+    }
+  
+    .split-layout {
+      flex-direction: column;
+    }
+  
+    .left-pane,
+    .right-pane {
+      width: 100% !important;
+      padding: 0.5rem;
+    }
+  }
+  
+  /**********************************
+   * 8. 无文章模式（让题目居中）
+   **********************************/
+   .no-article .right-pane {
+    margin: 0 auto;
+    max-width: 800px; /* 适当减小宽度，避免太空 */
+    width: 100%;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 3rem 6%; /* 增加左右间距 */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+  
+  
+  .no-article .splitter-handle {
+    display: none !important;
+  }
+  
+  /**********************************
+   * 9. 文本输入框优化
+   **********************************/
+   .question-block textarea {
+    width: 100%;
+    min-height: 120px;
+    max-width: 100%;
+    padding: 12px 15px;
+    font-size: 1.1rem;
+    line-height: 1.8;
+    font-family: 'Georgia', serif;
+    background: #faf8f3;
+    border: 1px solid #d3cfc9;
+    border-radius: 8px;
+    resize: none;  /* 取消手动拖拽，让JS控制 */
+    overflow: hidden; /* 隐藏滚动条 */
+    transition: all 0.2s ease-in-out;
+    color: #000;
+  }
+  
+  .question-block textarea:focus {
+    border-color: #257c38;
+    box-shadow: 0 0 0 2px rgba(37, 124, 56, 0.2);
+  }
+  /* 通用滚动条样式 */
+::-webkit-scrollbar {
+    width: 8px; /* 细一点，减少占用空间 */
+    height: 8px;
+  }
+  
+  /* 滚动条轨道 */
+  ::-webkit-scrollbar-track {
+    background: #f0f0f0; /* 轻微灰色，柔和 */
+    border-radius: 8px;
+  }
+  
+  /* 滚动条滑块 */
+  ::-webkit-scrollbar-thumb {
+    background: #bbb; /* 中性灰色，更柔和 */
+    border-radius: 8px;
+    transition: background 0.3s ease;
+  }
+  
+  /* 悬停时更明显 */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #999; /* 略深一点，增强可见性 */
+  }
+/**********************************
+ * 10. Menu 下拉优化
+ **********************************/
+ .custom-dropdown {
+    position: absolute;
+    top: 70px; /* 确保在 Navbar 下方 */
+    left: 10px; /* 让菜单靠近 “≡” 按钮 */
+    background: #fff;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    z-index: 999; /* 确保菜单显示在最上层 */
+    min-width: 180px; /* 防止菜单太小 */
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15); /* 添加阴影增强层次感 */
+    transform: translateY(-10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+  }
+  
+  /* 当 Menu 打开时 */
+  .custom-dropdown.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  /* 按钮内边距优化，避免菜单项太紧 */
+  .custom-dropdown button {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    width: 100%;
+    color: #000;
+    background: none;
+    border: none;
+    text-align: left;
+    font-size: 0.95rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    outline: none;
+  }
+  
+  .custom-dropdown button:hover {
+    background-color: #efefef;
+  }
+  .custom-dropdown button:focus {
+    outline: none; 
+    box-shadow: none;
+  }
